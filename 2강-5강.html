@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="alert-box" id="alert">
+      <p id="alert-message">알림창</p>
+      <button id="close">닫기</button>
+    </div>
+    <button onclick="idAlert()">버튼1</button>
+    <button onclick="passwordAlert()">버튼2</button>
+    <script>
+      document.getElementById('close').addEventListener('click', function () {
+        document.getElementById('alert').style.display = 'none';
+      });
+
+      // 함수 하나로 여러가지 기능을 실행할 때, 파라미터 문법
+
+      function closeAlert() {
+        document.getElementById('alert').style.display = 'none';
+      }
+
+      function idAlert() {
+        document.getElementById('alert').style.display = 'block';
+        document.getElementById('alert-message').innerHTML =
+          '아이디를 입력하세요';
+      }
+
+      function passwordAlert() {
+        document.getElementById('alert').style.display = 'block';
+        document.getElementById('alert-message').innerHTML =
+          '비밀번호를 입력하세요';
+      }
+
+      //   function idAlert(text) {
+      //     document.getElementById('alert').style.display = 'block';
+      //     document.getElementById('alert-message').innerHTML = text;
+      //   }
+
+      //   function closeAlert() {
+      //     document.getElementById('alert').style.display = 'none';
+      //   }
+    </script>
+  </body>
+</html>
