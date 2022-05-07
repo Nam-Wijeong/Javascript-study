@@ -19,6 +19,13 @@
     ></script>
   </head>
   <body>
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <button class="btn btn-danger" id="close">닫기</button>
+      </div>
+    </div>
+
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
@@ -27,13 +34,8 @@
         </button>
       </div>
     </nav>
+
     <button id="login">로그인</button>
-    <div class="black-bg">
-      <div class="white-bg">
-        <h4>로그인하세요</h4>
-        <button class="btn btn-danger" id="close">닫기</button>
-      </div>
-    </div>
 
     <ul class="list-group">
       <li class="list-group-item">An item</li>
@@ -50,7 +52,9 @@
     <script>
       $('#login').on('click', function () {
         document.querySelector('.black-bg').classList.add('show-modal');
-        $('#close').on('click', function () {});
+        $('#close').on('click', function () {
+          document.querySelector('.black-bg').classList.remove('show-modal');
+        });
       });
 
       //   document.querySelector('#login').addEventListener('click', function () {
