@@ -22,20 +22,70 @@
     <div class="black-bg">
       <div class="white-bg">
         <h4>로그인하세요</h4>
-        <button class="btn btn-danger" id="close">닫기</button>
+        <form action="success.html">
+          <div class="my-3">
+            <input id="id" type="text" class="form-control" />
+          </div>
+          <div class="my-3">
+            <input id="password" type="password" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            전송
+          </button>
+          <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>
       </div>
     </div>
+
+    <script>
+      const submitBtn = document.querySelector('#submit-btn');
+      const inputId = document.querySelector('#id');
+      const inputPassword = document.querySelector('#password');
+      submitBtn.addEventListener('click', () => {
+        if (inputId.value === '' && inputPassword.value === '') {
+          alert('아이디를 입력하세요');
+          alert('비밀번호를 입력하세요');
+        }
+        if (inputPassword.value.length < 6) {
+          alert('비밀번호는 6 글자 이상으로 입력해주세요.');
+        }
+        // if (inputPassword.value === '') {
+        //   alert('비밀번호를 입력하세요');
+        // }
+      });
+    </script>
 
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
+        <span class="badge bg-dark">Dark 🔄</span>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </nav>
 
-    <button id="login">로그인</button>
+    <script>
+      let count = 0;
+      const darkMode = document.querySelector('.badge');
+
+      darkMode.addEventListener('click', () => {
+        count++;
+        console.log(count);
+
+        // 클릭횟수가 짝수면 다크
+        // 클릭횟수가 홀수면 라이트
+        if (count % 2 === 1) {
+          darkMode.textContent = 'Light 🔄';
+          document.querySelector('body').classList.add('dark');
+        } else {
+          darkMode.textContent = 'Dark 🔄';
+          document.querySelector('body').classList.remove('dark');
+        }
+      });
+    </script>
+
+    <!-- <button id="login">로그인</button> -->
 
     <ul class="list-group">
       <li class="list-group-item">An item</li>
@@ -44,6 +94,11 @@
       <li class="list-group-item">A fourth item</li>
       <li class="list-group-item">And a fifth one</li>
     </ul>
+
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
+    </div>
 
     <!-- <p class="hello">안녕</p>
     <p class="hello">안녕</p>
