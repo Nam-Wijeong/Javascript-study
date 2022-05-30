@@ -24,7 +24,12 @@
         <h4>로그인하세요</h4>
         <form action="success.html">
           <div class="my-3">
-            <input id="id" type="text" class="form-control" />
+            <input
+              id="id"
+              type="text"
+              class="form-control"
+              placeholder="이메일을 입력하세요"
+            />
           </div>
           <div class="my-3">
             <input id="password" type="password" class="form-control" />
@@ -49,9 +54,12 @@
         if (inputPassword.value.length < 6) {
           alert('비밀번호는 6 글자 이상으로 입력해주세요.');
         }
-        // if (inputPassword.value === '') {
-        //   alert('비밀번호를 입력하세요');
-        // }
+        if (/\S+@\S+\.\S+/.test(inputId.value)) {
+          alert('이메일 형식이 아닙니다');
+        }
+        if (/[A-Z]/.test(inputPassword) === false) {
+          alert('대문자가 없습니다.');
+        }
       });
     </script>
 
@@ -100,6 +108,99 @@
       <button id="login" class="btn btn-danger">로그인</button>
     </div>
 
+    <div class="alert alert-danger">
+      <span class="num">5</span>초 이내 구매시 사은품 증정!
+    </div>
+
+    <script>
+      // setInterval(function () {
+      //   document.querySelector('.alert').style.visibility = 'hidden';
+      // }, 1000);
+      {
+        const alert = document.querySelector('.alert');
+        const num = document.querySelector('.num');
+        let count = 5;
+
+        setInterval(function () {
+          count--;
+          if (count > 0) {
+            num.textContent = count;
+          } else if (count === 0) {
+            alert.textContent = '행사가 종료되었습니다!';
+          }
+        }, 1000);
+      }
+    </script>
+
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="images/행복.jpeg" alt="" />
+        </div>
+        <div class="slide-box">
+          <img src="images/sunny.jpg" alt="" />
+        </div>
+        <div class="slide-box">
+          <img src="images/sunset.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <button class="prev">이전</button>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="next">다음</button>
+
+    <script>
+      const slideContainer = document.querySelector('.slide-container');
+      const firstBtn = document.querySelector('.slide-1');
+      const secondBtn = document.querySelector('.slide-2');
+      const thirdBtn = document.querySelector('.slide-3');
+      const nextBtn = document.querySelector('.next');
+      const prevBtn = document.querySelector('.prev');
+
+      firstBtn.addEventListener('click', () => {
+        slideContainer.style.transform = 'translateX(0vw)';
+      });
+
+      secondBtn.addEventListener('click', () => {
+        slideContainer.style.transform = 'translateX(-100vw)';
+      });
+
+      thirdBtn.addEventListener('click', () => {
+        slideContainer.style.transform = 'translateX(-200vw)';
+      });
+
+      nextBtn.addEventListener('click', () => {
+        // 만약 다음버튼 누르면
+        // 지금 보이는 사진이 1번이면 2번으로 보여주세요
+        // 2번이면 3번으로 보여주세요
+        // 3번이면 1번으로 보여주세요
+        let currentImg = 1;
+
+        if (currentImg === 1) {
+          slideContainer.style.transform = 'translateX(-100vw)';
+          currentImg++;
+        } else if (currentImg === 2) {
+          slideContainer.style.transform = 'translateX(-200vw)';
+          currentImg++;
+        } else if (currentImg === 3) {
+          slideContainer.style.transform = 'translateX(-300vw)';
+        }
+      });
+
+      // prevBtn.addEventListener('click', () => {
+      //   let currentImg = 1;
+      //   if (currentImg === 1) {
+      //     slideContainer.style.transform = 'translateX(-200vw)';
+      //     currentImg--;
+      //   } else if (currentImg === 0) {
+      //     slideContainer.style.transform = 'translateX(-100vw)';
+      //     currentImg--;
+      //   }
+      // });
+    </script>
     <!-- <p class="hello">안녕</p>
     <p class="hello">안녕</p>
     <p class="hello">안녕</p>
@@ -131,6 +232,21 @@
         .addEventListener('click', function () {
           document.querySelector('.list-group').classList.toggle('show');
         });
+
+      function 단위변경(min, sec) {
+        return (min * 60 + sec) * 1000;
+      }
+      console.log(단위변경(1, 30));
+      console.log(단위변경(2, 10));
+
+      function discount(num, buy) {
+        let result = num * 0.9;
+        if (buy === true) {
+          result = result - 1.5;
+        }
+        return result.toFixed(0);
+      }
+      console.log(discount(70, true));
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
