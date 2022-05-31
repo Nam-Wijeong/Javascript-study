@@ -74,6 +74,12 @@
     </nav>
 
     <script>
+      window.addEventListener('scroll', () => {
+        // console.log(window.scrollTo(0, 100));
+      });
+    </script>
+
+    <script>
       let count = 0;
       const darkMode = document.querySelector('.badge');
 
@@ -107,6 +113,8 @@
       <h4>Shirts on Sale</h4>
       <button id="login" class="btn btn-danger">로그인</button>
     </div>
+
+    <div style="height: 1000px"></div>
 
     <div class="alert alert-danger">
       <span class="num">5</span>초 이내 구매시 사은품 증정!
@@ -189,17 +197,6 @@
           slideContainer.style.transform = 'translateX(-300vw)';
         }
       });
-
-      // prevBtn.addEventListener('click', () => {
-      //   let currentImg = 1;
-      //   if (currentImg === 1) {
-      //     slideContainer.style.transform = 'translateX(-200vw)';
-      //     currentImg--;
-      //   } else if (currentImg === 0) {
-      //     slideContainer.style.transform = 'translateX(-100vw)';
-      //     currentImg--;
-      //   }
-      // });
     </script>
     <!-- <p class="hello">안녕</p>
     <p class="hello">안녕</p>
