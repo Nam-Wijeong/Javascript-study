@@ -61,11 +61,19 @@
           alert('대문자가 없습니다.');
         }
       });
+
+      const closeModal = document.querySelector('.black-bg');
+      closeModal.addEventListener('click', (event) => {
+        if (event.target === closeModal) {
+          console.log(event.target);
+          closeModal.classList.remove('show-modal');
+        }
+      });
     </script>
 
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
-        <span class="navbar-brand">Navbar</span>
+        <span class="navbar-brand">JS Shop</span>
         <span class="badge bg-dark">Dark 🔄</span>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
@@ -74,8 +82,13 @@
     </nav>
 
     <script>
+      const navbar = document.querySelector('.navbar-brand');
       window.addEventListener('scroll', () => {
-        // console.log(window.scrollTo(0, 100));
+        if (window.scrollY > 100) {
+          navbar.style.fontSize = '20px';
+        } else {
+          navbar.style.fontSize = '30px';
+        }
       });
     </script>
 
@@ -99,8 +112,6 @@
       });
     </script>
 
-    <!-- <button id="login">로그인</button> -->
-
     <ul class="list-group">
       <li class="list-group-item">An item</li>
       <li class="list-group-item">A second item</li>
@@ -113,6 +124,28 @@
       <h4>Shirts on Sale</h4>
       <button id="login" class="btn btn-danger">로그인</button>
     </div>
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto in
+      veniam nisi. Dignissimos, quasi commodi nihil ea ipsa eum. Ullam
+      perspiciatis magnam ab odio iste molestiae voluptatum tenetur dolorum
+      consequatur?
+    </div>
+
+    <script>
+      const lorem = document.querySelector('.lorem');
+      lorem.addEventListener('scroll', () => {
+        let loremScrollTop = document.querySelector('.lorem').scrollTop;
+        let loremScrollHeight = document.querySelector('.lorem').scrollHeight;
+        let loremClientHeight = document.querySelector('.lorem').clientHeight;
+
+        if (loremScrollTop + loremClientHeight === loremScrollHeight) {
+          alert('스크롤이 끝났습니다!');
+        }
+        // console.log(loremScrollTop, loremScrollHeight); // 164, 264
+        // console.log(loremClientHeight);
+      });
+    </script>
 
     <div style="height: 1000px"></div>
 

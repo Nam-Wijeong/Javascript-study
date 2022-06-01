@@ -6,11 +6,13 @@
 
 .navbar-brand {
   font-size: 30px;
+  transition: all 0.5s;
 }
 
 .dark {
   background-color: black;
   color: white;
+  transition: all 0.5s;
 }
 
 .alert-box {
@@ -34,7 +36,7 @@
   height: 100%;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  z-index: 6;
   padding: 30px;
   visibility: hidden;
   opacity: 0;
