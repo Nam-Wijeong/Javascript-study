@@ -76,15 +76,131 @@
           <img src="https://via.placeholder.com/600" class="w-100" />
           <h5>${a['title']}</h5>
           <p>가격 : ${a['price']}</p>
+          <button class="buy">구매</button>
         </div>
       `;
         row.insertAdjacentHTML('beforeend', template);
       });
+
+      //   let arr = [1, 2, 3];
+      //   let newArr = JSON.stringify(arr);
+
+      //   localStorage.setItem('num', newArr);
+      //   let 꺼냄 = localStorage.getItem('num');
+      //   JSON.parse(꺼냄);
+      //   console.log(JSON.parse(꺼냄)[0]);
+      //   localStorage.clear();
+
+      const buyBtn = document.querySelectorAll('.buy');
+      for (let i = 0; i < buyBtn.length; i++) {
+        buyBtn[i].addEventListener('click', (e) => {
+          let title =
+            e.target.previousElementSibling.previousElementSibling.innerHTML;
+          if (localStorage.getItem('cart') != null) {
+            let getProduct = JSON.parse(localStorage.getItem('cart'));
+            getProduct.push(title);
+            localStorage.setItem('cart', JSON.stringify(getProduct));
+          } else {
+            localStorage.setItem('cart', JSON.stringify([title]));
+          }
+        });
+      }
     </script>
 
     <div class="container">
       <button class="btn btn-danger">더보기</button>
     </div>
+
+    <div class="container my-3">
+      <button class="btn btn-danger" id="price">가격순 정렬</button>
+    </div>
+
+    <div class="container my-3">
+      <button class="btn btn-danger" id="name">다나가순 정렬</button>
+    </div>
+
+    <div class="container my-3">
+      <button class="btn btn-danger" id="priceFilter">
+        6만원 이하 상품보기
+      </button>
+    </div>
+
+    <script>
+      products = [
+        { id: 0, price: 70000, title: 'Blossom Dress' },
+        { id: 1, price: 50000, title: 'Springfield Shirt' },
+        { id: 2, price: 60000, title: 'Black Monastery' },
+      ];
+
+      // 가격 낮은 순서로 정렬하기
+      const priceBtn = document.querySelector('#price');
+      priceBtn.addEventListener('click', () => {
+        products.sort((a, b) => {
+          return a.price - b.price;
+        });
+        row.innerHTML = '';
+
+        products.forEach((a, i) => {
+          let template = `
+        <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100" />
+          <h5>${a['title']}</h5>
+          <p>가격 : ${a['price']}</p>
+          <button>구매</button>
+        </div>
+      `;
+          row.insertAdjacentHTML('beforeend', template);
+        });
+      });
+
+      // 다, 나, 가 순으로 정렬하기
+      const nameBtn = document.querySelector('#name');
+      nameBtn.addEventListener('click', () => {
+        products.sort((a, b) => {
+          if (a.title < b.title) {
+            return 1;
+          } else if (a.title > b.title) {
+            return -1;
+          } else if (a.title === b.title) {
+            return 0;
+          }
+        });
+        row.innerHTML = '';
+
+        products.forEach((a, i) => {
+          let template = `
+        <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100" />
+          <h5>${a['title']}</h5>
+          <p>가격 : ${a['price']}</p>
+          <button>구매</button>
+        </div>
+        `;
+          row.insertAdjacentHTML('beforeend', template);
+        });
+      });
+
+      // 6만원 이하 상품만 보여주기
+      const priceFilter = document.querySelector('#priceFilter');
+      priceFilter.addEventListener('click', () => {
+        let newPrice = products.filter((a) => {
+          return a.price <= 60000;
+        });
+        row.innerHTML = '';
+
+        newPrice.forEach((a, i) => {
+          let template = `
+        <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100" />
+          <h5>${a['title']}</h5>
+          <p>가격 : ${a['price']}</p>
+          <button>구매</button>
+        </div>
+        `;
+          row.insertAdjacentHTML('beforeend', template);
+        });
+      });
+    </script>
 
     <script>
       const moreBtn = document.querySelector('.btn-danger');
@@ -122,15 +238,52 @@
       function makeTemplate(name) {
         name.forEach((a, i) => {
           let template = `
-                <div class="col-sm-4">
-                <img src="https://via.placeholder.com/600" class="w-100" />
-                <h5>${name[i]['title']}</h5>
-                <p>가격 : ${name[i]['price']}</p>
-                </div>
-            `;
+                  <div class="col-sm-4">
+                  <img src="https://via.placeholder.com/600" class="w-100" />
+                  <h5>${name[i]['title']}</h5>
+                  <p>가격 : ${name[i]['price']}</p>
+                  <button>구매</button>
+                  </div>
+              `;
           row.insertAdjacentHTML('beforeend', template);
         });
       }
+
+      // 숫자 오름차순
+      let array = [7, 3, 5, 2, 40];
+      array.sort(function (a, b) {
+        return a - b;
+      });
+      console.log(array);
+
+      let array2 = ['a', 'b', 'c'];
+      console.log(array2);
+
+      // 문자열 배열 내림차순 정렬
+      array2.sort((a, b) => {
+        if (a < b) {
+          return 1;
+        } else if (a > b) {
+          return -1;
+        } else if (a === b) {
+          return 0;
+        }
+      });
+      console.log(array2);
+
+      // filter 함수 - 변수에 저장해서 사용(원본 변형 x)
+      array = [7, 3, 5, 2, 40];
+      let newArray = array.filter((a) => {
+        return a < 4;
+      });
+      console.log(newArray);
+
+      // map 함수(각각 맞는 환율로 변환해서 보여줄 때)
+      array = [7, 3, 5, 2, 40];
+      let newArray2 = array.map((a) => {
+        return a * 4;
+      });
+      console.log(newArray2);
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
