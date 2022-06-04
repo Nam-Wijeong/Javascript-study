@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <button id="버튼">버튼이에요</button> -->
+
+    <div style="display: none">모달창0</div>
+    <div style="display: none">모달창1</div>
+    <div style="display: none">모달창2</div>
+
+    <button>버튼0</button>
+    <button>버튼1</button>
+    <button>버튼2</button>
+
+    <script>
+      console.log(this);
+
+      //     let obj = {
+      //       data: 'Kim',
+      //       함수: function () {
+      //         // 오브젝트 내 함수 안에서 this를 쓰면 그 함수를 가지고 있는 오브젝트를 뜻함
+      //         console.log(this);
+      //       },
+      //     };
+
+      //   console.log(obj.data);
+      //   obj.함수();
+
+      let obj2 = {
+        name: ['김', '이', '박'],
+        함수: function () {
+          obj2.name.forEach(function () {
+            console.log(this);
+          });
+        },
+      };
+      obj2.함수();
+
+      // 연습문제 1
+      let person = {
+        name: '손흥민',
+        sayHi: function () {
+          console.log(`안녕 나는 ${this.name}~!`);
+        },
+      };
+      person.sayHi();
+
+      // 연습문제 2
+      let 자료 = {
+        data: [1, 2, 3, 4, 5],
+      };
+      자료.sumAll = function () {
+        let sum = 0;
+        this.data.forEach((a) => {
+          sum += a;
+        });
+        console.log(sum);
+      };
+      자료.sumAll();
+
+      // 연습문제 3
+
+      //   document.getElementById('버튼').addEventListener('click', function () {
+      //     // console.log(this.innerHTML);
+      //     setTimeout(() => {
+      //       console.log(this.innerHTML);
+      //     }, 1000);
+      //   });
+
+      const btn = document.querySelectorAll('button');
+      const modal = document.querySelectorAll('div');
+
+      for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', () => {
+          modal[i].style.display = 'block';
+        });
+      }
+    </script>
+  </body>
+</html>
