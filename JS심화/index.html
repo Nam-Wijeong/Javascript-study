@@ -80,6 +80,24 @@
           modal[i].style.display = 'block';
         });
       }
+
+      function Product(name, price) {
+        this.name = name;
+        this.price = price;
+        this.vat = function () {
+          console.log(this.price * 0.1);
+        };
+      }
+
+      class 부모 {
+        constructor() {
+          this.name = 'kim';
+          this.sayHi = function () {
+            console.log('hello');
+          };
+        }
+      }
+      let 자식 = new 부모();
     </script>
   </body>
 </html>
